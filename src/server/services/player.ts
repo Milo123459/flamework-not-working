@@ -1,7 +1,7 @@
 import { Service, OnStart, Dependency } from "@flamework/core";
 import { Players } from "@rbxts/services";
 import { Components } from "@flamework/components";
-import { PlayerComponent } from "server/components/player.server";
+import { PlayerComponent } from "server/components/playerComponent";
 
 @Service()
 export class PlayersService implements OnStart {
@@ -10,6 +10,7 @@ export class PlayersService implements OnStart {
 	}
 
 	playerAdded(player: Player): void {
-		Dependency<Components>().addComponent<PlayerComponent>(player);
+		const components = Dependency<Components>();
+		components.addComponent<PlayerComponent>(player);
 	}
 }
